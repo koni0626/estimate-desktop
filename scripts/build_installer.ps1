@@ -26,9 +26,16 @@ if (-not $taskCompiler) {
     throw 'Inno Setup 6 is required. Install it with: winget install --id JRSoftware.InnoSetup --exact --scope user'
 }
 
-& $taskCompiler (Join-Path $taskRoot 'installer\EstimateDesktop.iss')
+$taskInstallerScript = Join-Path $taskRoot 'installer\EstimateDesktop.iss'
+$taskVersionLine = Get-Content -LiteralPath $taskInstallerScript -TotalCount 1
+if ($taskVersionLine -notmatch '^#define AppVersion "([^"]+)"$') {
+    throw 'AppVersion is missing from installer\EstimateDesktop.iss.'
+}
+$taskVersion = $Matches[1]
+
+& $taskCompiler $taskInstallerScript
 if ($LASTEXITCODE -ne 0) { throw 'Installer build failed.' }
 
-$taskInstaller = Join-Path $taskRoot 'deliverables\EstimateDesktop-Setup-1.0.0.exe'
+$taskInstaller = Join-Path $taskRoot "deliverables\EstimateDesktop-Setup-$taskVersion.exe"
 if (-not (Test-Path -LiteralPath $taskInstaller)) { throw 'Installer was not created.' }
 Write-Output "Installer: $taskInstaller"

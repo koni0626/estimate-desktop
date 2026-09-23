@@ -1,6 +1,6 @@
 # 見積管理システム — Windowsデスクトップ版・設計書・ソースコード
 
-このフォルダーは、デスクトップアプリのソース・設計書・配布用実行ファイル・Windowsインストーラーをまとめた独立プロジェクトです。通常の利用は[インストーラー](deliverables/EstimateDesktop-Setup-1.0.0.exe)から始めます。インストール方法、保存先、アンインストール時の扱いは[インストーラーの説明](docs/installer.md)を参照してください。
+このフォルダーは、デスクトップアプリのソース・設計書・配布用実行ファイル・Windowsインストーラーをまとめた独立プロジェクトです。通常の利用は[インストーラー](deliverables/EstimateDesktop-Setup-1.0.1.exe)から始めます。インストール方法、保存先、アンインストール時の扱いは[インストーラーの説明](docs/installer.md)を参照してください。
 
 個人事業主・小規模チーム向けのWindowsデスクトップ版見積管理システムです。見積書の作成、会社・部・課別の閲覧権限、会社ごとの承認なし／多段階承認、日本語PDFの発行を中心に、案件・要望、受注、請求、全額入金確認まで操作できます。
 
@@ -10,7 +10,7 @@
 
 ## すぐに使う（Windowsデスクトップ版）
 
-`deliverables/EstimateDesktop-Setup-1.0.0.exe`を実行してインストールします。ZIPから起動したい場合は`deliverables/estimate2-windows-desktop.zip`を展開し、`Estimate2/Estimate2.exe`をダブルクリックします。Python、Node.js、DBサーバーを利用者側で起動する必要はありません。WindowsのMicrosoft Edge WebView2 Runtimeが必要です。空DBでは事業者名と自分の名前だけを登録し、次回からはログイン画面なしで開きます。既存DBの利用者が複数いる場合は従来のログイン画面を使います。業務データは`%LOCALAPPDATA%\Estimate2\estimate2.sqlite3`に保存されます。ウィンドウの「ファイル → データをバックアップ」からバックアップできます。詳しくは[デスクトップ版の使い方](docs/desktop.md)を参照してください。
+`deliverables/EstimateDesktop-Setup-1.0.1.exe`を実行してインストールします。ZIPから起動したい場合は`deliverables/estimate2-windows-desktop.zip`を展開し、`Estimate2/Estimate2.exe`をダブルクリックします。Python、Node.js、DBサーバーを利用者側で起動する必要はありません。WindowsのMicrosoft Edge WebView2 Runtimeが必要です。空DBでは事業者名と自分の名前だけを登録し、次回からはログイン画面なしで開きます。既存DBの利用者が複数いる場合は従来のログイン画面を使います。業務データは`%LOCALAPPDATA%\Estimate2\estimate2.sqlite3`に保存されます。DBの変更が必要な版では更新前バックアップを自動作成します。詳しくは[デスクトップ版の使い方](docs/desktop.md)を参照してください。
 
 ## 開発環境とブラウザー版
 

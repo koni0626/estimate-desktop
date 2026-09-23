@@ -14,6 +14,7 @@ import sys
 import threading
 import time
 import traceback
+from contextlib import closing
 from datetime import datetime
 from pathlib import Path
 from urllib.request import urlopen
@@ -39,15 +40,53 @@ def configure_database(database: Path | None) -> Path | None:
     return database
 
 
-def backup_database(source: Path) -> Path:
+def backup_database(source: Path, *, before_upgrade: bool = False) -> Path:
     backup_dir = source.parent / "backups"
     backup_dir.mkdir(parents=True, exist_ok=True)
-    target = backup_dir / f"estimate2-{datetime.now():%Y%m%d-%H%M%S-%f}.sqlite3"
-    with sqlite3.connect(source) as current, sqlite3.connect(target) as backup:
-        current.backup(backup)
-        if backup.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
-            raise RuntimeError("バックアップの整合性確認に失敗しました。")
+    label = "estimate2-before-upgrade" if before_upgrade else "estimate2"
+    target = backup_dir / f"{label}-{datetime.now():%Y%m%d-%H%M%S-%f}.sqlite3"
+    try:
+        with closing(sqlite3.connect(source)) as current, closing(
+            sqlite3.connect(target)
+        ) as backup:
+            current.backup(backup)
+            if backup.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
+                raise RuntimeError("バックアップの整合性確認に失敗しました。")
+    except Exception:
+        target.unlink(missing_ok=True)
+        raise
     return target
+
+
+def migrate_database(config, database: Path, engine) -> Path | None:
+    """Back up an existing SQLite database before applying pending revisions."""
+    from alembic import command
+    from alembic.runtime.migration import MigrationContext
+    from alembic.script import ScriptDirectory
+
+    existed = database.is_file()
+    target_heads = set(ScriptDirectory.from_config(config).get_heads())
+    with engine.connect() as connection:
+        current_heads = set(MigrationContext.configure(connection).get_current_heads())
+    if current_heads == target_heads:
+        return None
+
+    backup = backup_database(database, before_upgrade=True) if existed else None
+    try:
+        with engine.connect() as connection:
+            config.attributes["connection"] = connection
+            try:
+                command.upgrade(config, "head")
+            finally:
+                config.attributes.pop("connection", None)
+    except Exception as exc:
+        if backup is not None:
+            raise RuntimeError(
+                "データベースの更新に失敗しました。アプリを終了し、"
+                f"バックアップ {backup} を確認してください。元のエラー: {exc}"
+            ) from exc
+        raise
+    return backup
 
 
 def prepare_application(database: Path | None):
@@ -57,10 +96,10 @@ def prepare_application(database: Path | None):
         raise RuntimeError("Reactのビルドがありません。frontendで npm run build を実行してください。")
     if not (BUNDLE_ROOT / "backend" / "assets" / "NotoSansJP.ttf").is_file():
         raise RuntimeError("日本語PDFフォントがありません。scripts/setup.ps1 を実行してください。")
-    from alembic import command
     from alembic.config import Config
+    from backend.app.db import database_path, engine
 
-    command.upgrade(Config(str(BUNDLE_ROOT / "alembic.ini")), "head")
+    migrate_database(Config(str(BUNDLE_ROOT / "alembic.ini")), database_path, engine)
     from backend.app.main import app
 
     return app
