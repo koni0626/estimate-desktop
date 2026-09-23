@@ -1,0 +1,3 @@
+# Only for a one-time import from the previous PostgreSQL estimate2 database.
+psycopg==3.3.6
+psycopg-binary==3.3.6

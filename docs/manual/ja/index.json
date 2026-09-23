@@ -1,0 +1,15 @@
+{
+  "updated_at": "2026-09-20",
+  "items": [
+    {"id":"first-steps","order":1,"title":"はじめに","category":"基本","path":"01-first-steps.md","description":"初期設定と、相談から入金までの流れ。"},
+    {"id":"projects","order":2,"title":"案件を管理する","category":"案件・要望","path":"02-projects.md","description":"案件の作成、進捗、関連書類、ドラッグ＆ドロップで資料を添付。"},
+    {"id":"requests","order":3,"title":"要望と合意を記録する","category":"案件・要望","path":"03-requests.md","description":"対象範囲、完了条件、合意と変更履歴。"},
+    {"id":"quotes","order":4,"title":"見積書を作成・発行する","category":"見積・売上","path":"04-quotes.md","description":"要望の紐付け、金額、改訂版、PDF。"},
+    {"id":"approvals","order":5,"title":"見積書を承認する","category":"見積・売上","path":"05-approvals.md","description":"承認なし・多段階承認、差戻し。"},
+    {"id":"orders","order":6,"title":"受注を登録する","category":"見積・売上","path":"06-orders.md","description":"合意した見積の版から受注、納品、取消。"},
+    {"id":"invoices","order":7,"title":"請求と入金を管理する","category":"見積・売上","path":"07-invoices.md","description":"請求書発行、入金、訂正の手順。"},
+    {"id":"settings","order":8,"title":"会社・取引先・メンバー設定","category":"管理","path":"08-settings.md","description":"取引先、印鑑、振込先、組織と閲覧範囲。"},
+    {"id":"faq","order":9,"title":"よくある質問","category":"困ったとき","path":"09-faq.md","description":"保存エラー、追加要望、PDFと範囲の違い。"},
+    {"id":"glossary","order":10,"title":"用語集","category":"困ったとき","path":"10-glossary.md","description":"案件・要望・改訂版・合意記録などの意味。"}
+  ]
+}

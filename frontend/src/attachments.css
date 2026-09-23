@@ -1,0 +1,343 @@
+.project-attachments > .project-section-title {
+  align-items: center;
+  margin-bottom: 19px;
+  gap: 18px;
+}
+.project-attachments h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #637653;
+}
+.attachment-usage {
+  flex-shrink: 0;
+  color: #6f7d5d;
+  font-size: 11px;
+  border: 1px solid #dce1cb;
+  background: #edf0df;
+  padding: 7px 11px;
+  border-radius: 8px;
+}
+.attachment-file-input {
+  display: none;
+}
+.attachment-dropzone {
+  border: 2px dashed #c8d2b6;
+  border-radius: 17px;
+  background: #f0f3e4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 20px;
+  gap: 9px;
+  color: #6b7b58;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.attachment-dropzone.is-dragging {
+  border-color: #7a9361;
+  background: #e0eacc;
+  box-shadow: 0 0 0 5px #bccfa647 inset;
+}
+.attachment-dropzone.is-uploading {
+  background: #f3f1e2;
+  border-color: #d9d3b6;
+}
+.attachment-drop-icon {
+  display: grid;
+  place-items: center;
+  width: 63px;
+  height: 62px;
+  background: #e3e9d1;
+  border: 1px solid #cdd9b9;
+  border-radius: 18px;
+  box-shadow: 0 3px 0 #d2dbbf;
+  margin-bottom: 5px;
+  color: #869d6c;
+}
+.attachment-dropzone strong {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.attachment-dropzone p {
+  font-size: 12px;
+  color: #798367;
+}
+.attachment-dropzone .button {
+  margin: 5px 0 8px;
+}
+.attachment-dropzone > small {
+  font-size: 10px;
+  color: #778568;
+  line-height: 1.8;
+}
+.attachment-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+.attachment-queue {
+  background: #fffdf4;
+  border: 1px solid #dddcc6;
+  border-radius: 12px;
+  padding: 14px 17px;
+  margin-top: 20px;
+}
+.attachment-queue-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #657454;
+  margin-bottom: 8px;
+}
+.attachment-queue-heading > strong {
+  font-size: 12px;
+}
+.attachment-queue-heading > div {
+  display: flex;
+  align-items: center;
+}
+.attachment-queue-heading .button {
+  min-height: 31px;
+  padding: 6px;
+  font-size: 11px;
+}
+.attachment-queue-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 0;
+  border-top: 1px dashed #e3e0ce;
+  font-size: 11px;
+  color: #7b826c;
+}
+.attachment-queue-row > span {
+  flex: 1;
+  min-width: 0;
+}
+.attachment-queue-row strong {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.attachment-queue-row > span > small {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.attachment-queue-row > small {
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.attachment-queue-row.error {
+  color: #a65840;
+  background: transparent;
+  border-width: 1px 0 0;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.attachment-queue-row.done {
+  color: #63844e;
+}
+.attachment-spinner {
+  animation: attachment-spin 1.8s linear infinite;
+}
+@keyframes attachment-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.attachment-list-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin: 27px 0 13px;
+  color: #697459;
+}
+.attachment-list-heading h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+}
+.attachment-list-heading h3 span {
+  background: #e8ebdb;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+.attachment-list-heading > small {
+  font-size: 10px;
+  color: #7c826f;
+}
+.attachment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.attachment-list > li {
+  background: #fffdf6;
+  border: 1px solid #e1decb;
+  border-bottom: 3px solid #ddd8c4;
+  border-radius: 13px;
+  padding: 16px;
+}
+.attachment-file-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.attachment-file-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 47px;
+  border: 1px solid #dedec6;
+  border-radius: 10px;
+  background: #efefdf;
+  color: #919674;
+}
+.attachment-file-info {
+  flex: 1;
+  min-width: 0;
+}
+.attachment-file-info > strong {
+  display: block;
+  color: #58694c;
+  font-size: 13px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+.attachment-file-info > small {
+  display: block;
+  color: #7b806d;
+  font-size: 10px;
+  margin-top: 5px;
+  line-height: 1.8;
+}
+.attachment-file-actions {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.attachment-file-actions .button {
+  font-size: 11px;
+  padding: 8px 12px;
+  min-height: 37px;
+}
+.attachment-delete-confirm {
+  border-top: 1px dashed #e0d9c6;
+  margin-top: 14px;
+  padding-top: 13px;
+}
+.attachment-delete-confirm p {
+  font-size: 12px;
+  color: #927457;
+  margin-bottom: 11px;
+}
+.attachment-delete-confirm .project-actions {
+  justify-content: flex-end;
+}
+.attachment-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 18px;
+  text-align: center;
+  background: #f6f4e9;
+  border: 1px solid #e4e1d0;
+  border-radius: 13px;
+  color: #80886e;
+}
+.attachment-empty p {
+  font-size: 12px;
+  margin: 12px 0 5px;
+}
+.attachment-empty small {
+  font-size: 11px;
+}
+.attachment-footer {
+  font-size: 10px;
+  color: #7d836e;
+  margin-top: 17px;
+}
+.studio-upload-notice {
+  margin: 0;
+  padding: 10px 20px;
+  background: #f4ebd1;
+  border-bottom: 1px solid #e5d9b7;
+  color: #8b784d;
+  font-size: 12px;
+}
+@media (max-width: 640px) {
+  .project-attachments > .project-section-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .attachment-dropzone {
+    padding: 23px 14px;
+  }
+  .attachment-dropzone strong {
+    font-size: 14px;
+  }
+  .attachment-dropzone p {
+    font-size: 11px;
+  }
+  .attachment-file-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .attachment-file-info {
+    min-width: 170px;
+  }
+  .attachment-file-actions {
+    margin-left: auto;
+  }
+  .attachment-queue-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .attachment-queue-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .attachment-queue-row > small {
+    margin-left: 26px;
+  }
+  .attachment-queue-row > span {
+    min-width: calc(100% - 30px);
+  }
+  .attachment-list-heading {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .studio-tabs {
+    flex-wrap: wrap;
+  }
+  .studio-tabs button {
+    flex: 1 0 42%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .attachment-spinner {
+    animation: none;
+  }
+  .attachment-dropzone {
+    transition: none;
+  }
+}
